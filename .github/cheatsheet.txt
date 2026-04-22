@@ -1,5 +1,5 @@
 vite.config.ts:
-  base: mode === "/name/",
+  base: "/name/",
 App.tsx:
   <BrowserRouter basename={import.meta.env.BASE_URL}>
 terminal:
