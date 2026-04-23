@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const links = [
-  { href: "#about", label: "About" },
   { href: "#features", label: "Features" },
   { href: "#why-us", label: "Why Us" },
   { href: "#location", label: "Location" },

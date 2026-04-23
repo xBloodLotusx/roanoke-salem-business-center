@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { ArrowRight, MapPin } from "lucide-react";
+import CenterOverhead from "@/assets/CenterOverhead.jpg";
 
 export const Hero = () => {
   return (
@@ -28,7 +28,7 @@ export const Hero = () => {
               </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-primary/30 text-primary">
-              <a href="#about">View Property</a>
+              <a href="#features">View Property</a>
             </Button>
           </div>
 
@@ -40,11 +40,13 @@ export const Hero = () => {
 
         <div className="lg:col-span-6">
           <div className="relative">
-            <ImagePlaceholder
-              label="Wide Commercial Plaza Hero"
-              aspectRatio="aspect-[5/4]"
-              className="bg-card shadow-elevated"
-            />
+            <div className="aspect-[5/4] overflow-hidden rounded-lg bg-card shadow-elevated">
+              <img
+                src={CenterOverhead}
+                alt="Aerial view of Roanoke‑Salem Business Center"
+                className="h-full w-full object-cover"
+              />
+            </div>
             <div className="absolute -bottom-6 -left-6 hidden rounded-lg border border-border bg-card p-5 shadow-soft md:block">
               <p className="font-serif text-3xl font-semibold text-primary">60+</p>
               <p className="text-xs uppercase tracking-wider text-muted-foreground">Years Serving the Valley</p>

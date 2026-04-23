@@ -1,12 +1,21 @@
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
-// Load any images placed in `src/assets/photos/` (jpg, png, webp, svg).
+// Load any images placed in `src/assets/` (jpg, png, webp, svg).
 // Drop your photos there and they'll be picked up automatically and
 // displayed in the same order as the filenames sorted alphabetically.
-const photoModules = import.meta.glob('../../assets/photos/*.{jpg,jpeg,png,webp,svg}', { eager: true }) as Record<string, any>;
+const photoModules = import.meta.glob('../../assets/*.{jpg,jpeg,png,webp,svg}', { eager: true }) as Record<string, any>;
 const photos: string[] = Object.keys(photoModules)
   .sort()
   .map((k) => (photoModules[k] && (photoModules[k].default ?? photoModules[k])));
+
+// Ensure specific photos appear in the desired positions in the gallery.
+// Swap `CenterBuilding` and `CenterOverhead2` if both are present.
+const photosOrdered = [...photos];
+const idxBuilding = photosOrdered.findIndex((p) => p && p.toString().toLowerCase().includes("centerbuilding"));
+const idxOverhead2 = photosOrdered.findIndex((p) => p && p.toString().toLowerCase().includes("centeroverhead2"));
+if (idxBuilding !== -1 && idxOverhead2 !== -1) {
+  [photosOrdered[idxBuilding], photosOrdered[idxOverhead2]] = [photosOrdered[idxOverhead2], photosOrdered[idxBuilding]];
+}
 
 const items = [
   { label: "Plaza Exterior — Front", span: "md:col-span-2 md:row-span-2", ratio: "aspect-square md:aspect-auto md:h-full" },
@@ -14,8 +23,6 @@ const items = [
   { label: "Suite Interior — Retail", span: "", ratio: "aspect-[4/3]" },
   { label: "Parking Lot", span: "", ratio: "aspect-[4/3]" },
   { label: "Suite Interior — Office", span: "", ratio: "aspect-[4/3]" },
-  { label: "Storefront Detail", span: "md:col-span-2", ratio: "aspect-[16/9]" },
-  { label: "Surrounding Area — Melrose Ave", span: "md:col-span-2", ratio: "aspect-[16/9]" },
 ];
 
 export const Gallery = () => {
@@ -34,7 +41,7 @@ export const Gallery = () => {
 
         <div className="mt-12 grid auto-rows-[200px] grid-cols-2 gap-4 md:grid-cols-4">
           {items.map((it, idx) => {
-            const src = photos[idx];
+            const src = photosOrdered[idx];
             return (
               <div key={it.label} className={`${it.span} h-full`}>
                 {src ? (

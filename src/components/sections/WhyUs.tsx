@@ -1,5 +1,8 @@
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { Check } from "lucide-react";
+import CenterOverhead2 from "@/assets/CenterOverhead2.jpg";
+import CenterOverhead3 from "@/assets/CenterOverhead3.jpg";
+import CenterBuilding from "@/assets/CenterBuilding.jpg";
+import CenterSign from "@/assets/CenterSign.jpg";
 
 const rows = [
   {
@@ -40,32 +43,42 @@ export const WhyUs = () => {
         </div>
 
         <div className="mt-16 space-y-20">
-          {rows.map((row, i) => (
-            <div
-              key={row.title}
-              className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${
-                i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
-              }`}
-            >
-              <ImagePlaceholder label={row.image} aspectRatio="aspect-[5/4]" className="bg-secondary" />
-              <div>
-                <h3 className="font-serif text-2xl font-semibold leading-tight text-primary sm:text-3xl">
-                  {row.title}
-                </h3>
-                <p className="mt-4 text-muted-foreground">{row.desc}</p>
-                <ul className="mt-6 space-y-2.5">
-                  {row.bullets.map((b) => (
-                    <li key={b} className="flex items-center gap-3 text-sm text-foreground">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/15 text-accent">
-                        <Check className="h-3 w-3" strokeWidth={3} />
-                      </span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+          {rows.map((row, i) => {
+            const imageMap = [CenterOverhead2, CenterOverhead3, CenterBuilding, CenterSign];
+            const imgSrc = imageMap[i];
+            return (
+              <div
+                key={row.title}
+                className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${
+                  i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
+                }`}
+              >
+                {imgSrc ? (
+                  <div className="aspect-[5/4] overflow-hidden rounded-lg bg-secondary">
+                    <img src={imgSrc} alt={row.image} className="h-full w-full object-cover" />
+                  </div>
+                ) : (
+                  <ImagePlaceholder label={row.image} aspectRatio="aspect-[5/4]" className="bg-secondary" />
+                )}
+                <div>
+                  <h3 className="font-serif text-2xl font-semibold leading-tight text-primary sm:text-3xl">
+                    {row.title}
+                  </h3>
+                  <p className="mt-4 text-muted-foreground">{row.desc}</p>
+                  <ul className="mt-6 space-y-2.5">
+                    {row.bullets.map((b) => (
+                      <li key={b} className="flex items-center gap-3 text-sm text-foreground">
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/15 text-accent">
+                          <Check className="h-3 w-3" strokeWidth={3} />
+                        </span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

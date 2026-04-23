@@ -69,36 +69,40 @@ export const Location = () => {
 
           <div className="lg:col-span-3">
             <div className="relative h-full min-h-[380px] overflow-hidden rounded-lg border border-border bg-card shadow-soft">
-              <div
-                className="absolute inset-0 opacity-60"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)",
-                  backgroundSize: "40px 40px",
-                }}
-              />
-              {/* Stylized road */}
-              <div className="absolute left-0 right-0 top-1/2 h-12 -translate-y-1/2 bg-primary/80">
-                <div className="absolute left-0 right-0 top-1/2 h-0.5 -translate-y-1/2 bg-[repeating-linear-gradient(90deg,hsl(var(--accent-foreground))_0_18px,transparent_18px_36px)]" />
-              </div>
-              <div className="absolute left-6 top-[calc(50%-44px)] text-[10px] font-semibold uppercase tracking-[0.2em] text-primary/70">
-                Melrose Ave NW
-              </div>
+                <div
+                  className="absolute inset-0 opacity-60"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)",
+                    backgroundSize: "40px 40px",
+                  }}
+                />
 
-              {/* Pin */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[calc(100%+10px)]">
-                <div className="flex flex-col items-center">
-                  <div className="rounded-md bg-card px-3 py-1.5 text-xs font-semibold text-primary shadow-soft">
-                    4142 Melrose Ave NW
+                {/* Embedded Google Map (behind overlays) */}
+                <iframe
+                  title="Roanoke-Salem Business Center map"
+                  src="https://www.google.com/maps?q=4142+Melrose+Ave+NW+Roanoke+VA+24017&output=embed"
+                  className="absolute inset-0 z-0 h-full w-full"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+
+                {/* Road graphic removed to keep map unobstructed */}
+
+                {/* Pin */}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[calc(100%+10px)] z-30">
+                  <div className="flex flex-col items-center">
+                    <div className="rounded-md bg-card px-3 py-1.5 text-xs font-semibold text-primary shadow-soft">
+                      4142 Melrose Ave NW
+                    </div>
+                    <div className="mt-1 h-3 w-3 rotate-45 bg-accent shadow-soft" />
                   </div>
-                  <div className="mt-1 h-3 w-3 rotate-45 bg-accent shadow-soft" />
+                </div>
+
+                <div className="absolute bottom-3 right-3 rounded bg-background/90 px-2 py-1 text-[10px] uppercase tracking-wider text-muted-foreground z-40">
+                  View on Google Maps
                 </div>
               </div>
-
-              <div className="absolute bottom-3 right-3 rounded bg-background/90 px-2 py-1 text-[10px] uppercase tracking-wider text-muted-foreground">
-                Map placeholder
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -45,7 +45,6 @@ export const Footer = () => {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Explore</p>
             <ul className="mt-4 space-y-2 text-sm">
               {[
-                ["#about", "About"],
                 ["#features", "Features"],
                 ["#why-us", "Why Us"],
                 ["#location", "Location"],
